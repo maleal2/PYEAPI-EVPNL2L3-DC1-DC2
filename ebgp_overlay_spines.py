@@ -78,6 +78,7 @@ def configure_bgp(node_name, asn, loopback, neighbor_Left, asn_Left, neighbor_Ri
             commands.append(f'neighbor {neighbor} next-hop-unchanged')
             commands.append(f'neighbor {neighbor} peer group EVPN_LEAF')
             commands.append(f'neighbor {neighbor} update-source Loopback0')
+            commands.append(f'neighbor {neighbor} ebgp-multihop')
 
         for neighbor in neighbor_Right:
             commands.append(f'neighbor {neighbor} remote-as {asn_Right}')
@@ -85,6 +86,7 @@ def configure_bgp(node_name, asn, loopback, neighbor_Left, asn_Left, neighbor_Ri
             commands.append(f'neighbor {neighbor} maximum-routes 0')
             commands.append(f'neighbor {neighbor} next-hop-unchanged')
             commands.append(f'neighbor {neighbor} update-source Loopback0')
+            commands.append(f'neighbor {neighbor} ebgp-multihop')
             
         commands.append('neighbor EVPN_LEAF peer group')
 
